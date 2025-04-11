@@ -1,8 +1,5 @@
 import streamlit as st
-import random
-import string
-import time
-
+import random, string
 st.set_page_config(page_title="Password Generator", layout="centered")
 
 # Header
@@ -50,10 +47,10 @@ if st.button("Generate Password"):
     else:
         st.warning("Please enter some base text.")
 
-# Pass strenght meter
+# Pass strength meter
+st.title("-<<Password strength meter>>-")
 def check_password_strength():
     if input_password := st.text_input("Check password strength", type="password"):
-        st.write("Password strength meter")
         strength = 0
         # Fix variable name to `input_password`
         if any(char.isdigit() for char in input_password):
@@ -69,7 +66,6 @@ def check_password_strength():
 
         st.progress(min(strength / 5, 1.0))
         st.write("Password strength:", strength, "/ 5")
-
 st.button("Check Password Strength", on_click=check_password_strength())
 
 # Footer
